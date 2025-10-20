@@ -42,7 +42,7 @@ public class SeleniumClase1 {
         //Last Name
         driver.findElement(By.id("LastName")).sendKeys("Valenzuela");
         //email
-        driver.findElement(By.xpath("//input[@data-val-required='Email is required.']")).sendKeys("dania@algo.com");
+        driver.findElement(By.xpath("//input[@data-val-required='Email is required.']")).sendKeys("daniedo@algo.com");
 
         //password
         driver.findElement(By.xpath("//input[@id='Password']")).sendKeys("123456");
@@ -53,9 +53,6 @@ public class SeleniumClase1 {
         //click en register
         driver.findElement(By.id("register-button")).click();
 
-        
-
-        System.out.println("Resultado: "+);
         
     }
 }
