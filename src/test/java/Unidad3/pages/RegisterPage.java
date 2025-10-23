@@ -1,6 +1,6 @@
-package Unidad2.pages;
+package Unidad3.pages;
 
-import Unidad2.utils.BaseClass;
+import Unidad3.glue.utils.BaseClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -18,8 +18,8 @@ public class RegisterPage extends BaseClass {
     By locatorErrorMessage = By.xpath("//li[text()='The specified email already exists']");
 
 
-    public RegisterPage(WebDriver driver) {
-        super(driver);
+    public RegisterPage() {
+        super();
     }
 
     public void crearCuenta(int genero, String nombre, String apellido, String mail, String pass, String confirmPass){

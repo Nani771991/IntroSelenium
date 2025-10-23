@@ -1,6 +1,6 @@
-package Unidad2.pages;
+package Unidad3.pages;
 
-import Unidad2.utils.BaseClass;
+import Unidad3.glue.utils.BaseClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -15,8 +15,25 @@ public class AuthPage extends BaseClass {
     private final By txtPasswordXp = By.xpath("//input[@id='Password']");
     private final By btnLogin      = By.cssSelector("input[value='Log in']");
     private final By btnLoginXp    = By.xpath("//input[@value='Log in']");
+    private final By modalLogin = By.xpath("//div[@class='returning-wrapper']/div[@class='title']");
+    private final By locatorErrorLogin = By.xpath("//div[@class='validation-summary-errors']");
 
-    public AuthPage(WebDriver driver){ super(driver); }
+
+    public AuthPage(){ super(); }
+
+    public String obtenerTituloModalLogin (){
+        return obtenerTexto(modalLogin);
+    }
+    public boolean validarEmail (){
+        return validarElementoWeb(txtEmail);
+    }
+    public boolean validarPassword (){
+        return validarElementoWeb(txtPassword);
+    }
+
+    public boolean validarLogin (){
+        return validarElementoWeb(btnLogin);
+    }
 
     public void irALogin(){
         try { click(linkLogin); }
@@ -35,5 +52,21 @@ public class AuthPage extends BaseClass {
     public void cerrarSesion(){
         try { click(linkLogout); }
         catch (Exception e){ click(linkLogoutXp); }
+    }
+
+    public void ingresarEmail(String email) {
+        agregarTexto(txtEmail,email);
+    }
+
+    public void ingresarPassword(String password) {
+        agregarTexto(txtPassword,password);
+    }
+
+    public void iniciarSesion() {
+        click(esperarWebElement(btnLogin));
+    }
+
+    public String obtenerErrorLogin() {
+        return obtenerTexto(locatorErrorLogin);
     }
 }

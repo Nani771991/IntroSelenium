@@ -1,4 +1,4 @@
-package utilidades;
+package Unidad2.utils;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -17,23 +17,33 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class DataDriven {
 
 	//public static void main(String[] args) throws IOException {
-	public ArrayList<String> getData(String nombreCasoDePrueba) throws IOException{
+	public static ArrayList<String> getData(String nombreCasoDePrueba) {
 		// TODO Auto-generated method stub
 		ArrayList<String> a = new ArrayList<String>();
 		// Se instancia un objeto de tipo fileInputStream para especificar la ruta del
 		// excel
-		FileInputStream rutaArchivo = new FileInputStream(
-				"C:\\Users\\domingo.saavedra\\workspace\\pageObjecModelPrimerosPasos\\src\\test\\resources\\data\\dataPrueba.xlsx");
+        FileInputStream rutaArchivo = null;
+        try {
+            rutaArchivo = new FileInputStream(
+                    "/Users/danielvalenzuelasilva/IdeaProjects/IntroSelenium/src/test/resources/data/dataPrueba.xlsx");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
-		// Se instancia un objeto de tipo libro excel con la ruta del archivo que sera
+        // Se instancia un objeto de tipo libro excel con la ruta del archivo que sera
 		// utilizado
-		XSSFWorkbook excel = new XSSFWorkbook(rutaArchivo);
+        XSSFWorkbook excel = null;
+        try {
+            excel = new XSSFWorkbook(rutaArchivo);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
-		int sheets = excel.getNumberOfSheets();
+        int sheets = excel.getNumberOfSheets();
 
 		for (int i = 0; i < sheets; i++) {
 			// System.out.println(excel.getSheetName(i));
-			if (excel.getSheetName(i).equalsIgnoreCase("DatosDePrueba")) {
+			if (excel.getSheetName(i).equalsIgnoreCase("DataPruebas")) {
 				// Encontre la hoja con la que quiero trabajar
 				XSSFSheet hojaExcel = excel.getSheetAt(i);
 
@@ -51,7 +61,7 @@ public class DataDriven {
 				while (celda.hasNext()) {
 					Cell celdaSeleccionada = celda.next();
 
-					if (celdaSeleccionada.getStringCellValue().equalsIgnoreCase("NombreCasoDePrueba")) {
+					if (celdaSeleccionada.getStringCellValue().equalsIgnoreCase("TituloCPs")) {
 						// definir la columna identificada
 						columna = k;
 					}

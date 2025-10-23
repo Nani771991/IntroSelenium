@@ -1,6 +1,6 @@
-package Unidad2.pages;
+package Unidad3.pages;
 
-import Unidad2.utils.BaseClass;
+import Unidad3.glue.utils.BaseClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -12,7 +12,7 @@ public class NewsletterPage extends BaseClass {
     By lblResultado = By.id("newsletter-result-block");
     By lblResultadoXp = By.xpath("//div[@id='newsletter-result-block']");
 
-    public NewsletterPage(WebDriver driver){ super(driver); }
+    public NewsletterPage(){ super(); }
 
     public void suscribirse(String email){
         try { agregarTexto(txtEmail, email); }

@@ -1,6 +1,6 @@
-package Unidad2.pages;
+package Unidad3.pages;
 
-import Unidad2.utils.BaseClass;
+import Unidad3.glue.utils.BaseClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -12,10 +12,11 @@ public class HomePage extends BaseClass {
     By btnBuscar = By.xpath("//input[contains(@class,'search-box-button')]");
     By linkCarro = By.cssSelector("a.ico-cart");               // icono carro
     By linkCarroXPath = By.xpath("//a[contains(@class,'ico-cart')]");// respaldo
+    By linkLogin = By.linkText("Log in");
 
 
-    public HomePage(WebDriver driver) {
-        super(driver);
+    public HomePage() {
+        super();
     }
     //Acciones
     public void irARegister(){
@@ -31,5 +32,10 @@ public class HomePage extends BaseClass {
     public void irAlCarro(){
         try { click(linkCarro); }
         catch (Exception e) { click(linkCarroXPath); }
+    }
+
+    public void irALogin(){
+        try { click(linkLogin); }
+        catch (Exception e){ click(linkLogin); }
     }
 }

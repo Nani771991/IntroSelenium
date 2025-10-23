@@ -1,6 +1,6 @@
-package Unidad2.pages;
+package Unidad3.pages;
 
-import Unidad2.utils.BaseClass;
+import Unidad3.glue.utils.BaseClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,7 +11,7 @@ public class CarroPage extends BaseClass {
     By btnCheckout  = By.id("checkout");
     By btnCheckoutX = By.xpath("//button[@id='checkout']");
 
-    public CarroPage(WebDriver driver){ super(driver); }
+    public CarroPage(){ super(); }
 
     public void aceptarTerminos(){
         WebElement cb;

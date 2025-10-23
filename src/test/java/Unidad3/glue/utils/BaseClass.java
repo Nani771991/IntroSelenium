@@ -1,4 +1,4 @@
-package Unidad2.utils;
+package Unidad3.glue.utils;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,9 +7,15 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class BaseClass {
+
+    public String obtenerTituloPagina(){
+        return driver.getTitle();
+    }
+
     // Atributos (browser)
     private WebDriver driver;
 
@@ -28,13 +34,13 @@ public class BaseClass {
         this.driver = driver;
     }
 
-    public BaseClass(WebDriver driver) {
-        this.driver = driver;
+    public BaseClass() {
+        this.driver = DriverManager.getDriver();
+        espera = new WebDriverWait(this.driver, Duration.ofSeconds(10));
     }
 
     public WebElement esperarWebElement(By locator){
         try {
-            espera = new WebDriverWait(this.driver,10);
             //return driver.findElement(locator);
             return espera.until(ExpectedConditions.presenceOfElementLocated(locator));
 
@@ -50,7 +56,7 @@ public class BaseClass {
     //buscar Elemento web
     public List<WebElement> esperarWebElements(By locator){
         try {
-            espera = new WebDriverWait(this.driver,20);
+
             //return driver.findElement(locator);
             return espera.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
 
@@ -68,6 +74,10 @@ public class BaseClass {
     public void click(By locator){
         esperarWebElement(locator).click();
 
+    }
+
+    public void click(WebElement element){
+        element.click();
     }
 
     //SendKeys()
@@ -97,5 +107,9 @@ public class BaseClass {
     public void seleccionarDDLPorTextoVisible(By locator, String textoVisible){
         Select ddl = new Select(esperarWebElement(locator));
         ddl.selectByVisibleText(textoVisible);
+    }
+    //Validar si un elemento está Desplegado
+    public boolean validarElementoWeb (By locator){
+        return esperarWebElement(locator).isDisplayed();
     }
 }
